@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+	crossorigin="anonymous">
+<style>
+	body{
+		margin: 60px;
+	}
+</style>
+<head></head>
+<body>
+	
+	<a class="btn btn-info" th:href="@{/employee/showFormForAdd}">Create</a>
+
+	<table class="table" style="margin-top: 10px">
+		<thead class="thead-dark">
+			<tr>
+				<th>Employee first name</th>
+				<th>Employee last name</th>
+				<th>Employee email</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="employee :${employees}">
+				<td th:text="${employee.firstName}"></td>
+				<td th:text="${employee.lastName}"></td>
+				<td th:text="${employee.email}"></td>
+				<td>
+					<a class="btn btn-info" th:href="@{/employee/showFormForUpdate(employeeId=${employee.id})}">Update</a>
+					<a class="btn btn-danger" onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false" th:href="@{/employee/deleteEmployee(employeeId=${employee.id})}">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<script>
+	</script>
+</body>
+</html>
